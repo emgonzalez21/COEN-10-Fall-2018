@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+
+int input; 
+void request (); 
+void cancel (); 
+void list (); 
+int counter=0; 
+int i; 
+int times[5]={0,0,0,0,0};
+
+int main (void) 
+{
+	while (1) 
+	{
+		printf("1:Request a lesson\n2:Cancel a Lesson\n3:List the schedule\n9:Quit\n");
+		scanf("%d", &input); 
+
+		switch (input) 
+		{
+			case 1://request a lesson 
+				request (); 
+				break; 
+			case 2: //cancel a lesson 
+				cancel (); 
+				break;
+			case 3://list the schedule 
+				list ();
+				break; 
+			case 9: //quit
+				return (0); 
+				break;
+			default: 
+				printf("Invalid input, try entering a valid option\n");	
+		}
+	}	
+}
+void request () 
+{
+	if (counter==5)
+	{		
+		printf("Schedule is full--all the time slots are filled \n");
+	}		
+	for (i=0; i<5; i++) 
+	{
+		if (times[i]==0)
+		{
+			times[i]=i+1; 	
+			printf("You are now booked for %dPM, see you then!\n",i+1);
+			counter++;
+			break;
+		}
+	}
+}
+void cancel () 
+{
+	printf("Enter lesson time you are trying to cancel:");
+	scanf("%d", &i);
+  	i=i-1; 	
+		if (times[i]==0) 
+		{
+			printf("This time slot is empty.\n\n");
+		}
+		else 
+		{
+			printf("Your lesson has been cancelled.\n\n"); 
+			times[i]=0;
+			counter--; //update number of lessons
+			
+		}
+	}	
+
+void list ()
+{
+	if (counter==0)
+	{
+		printf("No lessons have been scheduled\n");
+	}
+	else 
+	{
+		for (i=0; i<5; i++)
+		{
+			if (times[i]==0)
+			{	
+				printf(" %dPM:Free\n",i+1);
+			}		
+			else 
+			{	
+				printf("%dPM:Lesson\n",i+1);
+			}			
+	}
+}
+	
+}
