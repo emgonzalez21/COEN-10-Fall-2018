@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h> 
+
+int main () 
+{
+	srand((int) time(NULL));
+	int num1; //computer generated number 
+	int num2; 
+	int product; 
+	int right=0; 
+	int wrong=0; 
+	int scorePercentage; 
+	int a; //user inputted answer
+	int i; 
+
+	for (i=0; i<10; i++) //repeats 10 times 
+	{
+		num1= rand()%12+1; //generate random number between 0 and 12
+		num2= rand ()%12+1; 
+		printf("%d * %d \n", num1, num2); 
+		
+		printf("Enter the product:"); 
+		scanf("%d", &a); 
+
+		product= num1*num2; 
+		
+		if (a==product)
+		{
+			printf("Yes! That is correct\n"); 
+			right++; 
+		}	
+		else 
+		{
+			wrong++; 
+			printf("Nope. that's wrong! The correct answer is %d\n", product); 
+		}
+	}
+	printf("right=%d wrong= %d\n", right, wrong); 
+	scorePercentage=right*10; 
+	printf("Your score is %d%%\n", scorePercentage); 
+}
